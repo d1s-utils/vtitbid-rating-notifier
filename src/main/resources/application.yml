@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: "vtitbid-rating-notifier"
+
+  main:
+    banner-mode: off

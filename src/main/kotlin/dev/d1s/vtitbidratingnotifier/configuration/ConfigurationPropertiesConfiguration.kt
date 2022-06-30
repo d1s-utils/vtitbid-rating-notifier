@@ -1,0 +1,8 @@
+package dev.d1s.vtitbidratingnotifier.configuration
+
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
+import org.springframework.context.annotation.Configuration
+
+@Configuration
+@ConfigurationPropertiesScan("dev.d1s.vtitbidratingnotifier.properties")
+class ConfigurationPropertiesConfiguration
