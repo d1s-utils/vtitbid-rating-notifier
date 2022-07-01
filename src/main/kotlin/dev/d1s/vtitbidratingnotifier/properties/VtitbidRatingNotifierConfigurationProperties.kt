@@ -12,6 +12,7 @@ import javax.validation.constraints.NotEmpty
 @ConstructorBinding
 @ConfigurationProperties(prefix = VTITBID_RATING_NOTIFIER_PROPERTY_PREFIX)
 data class VtitbidRatingNotifierConfigurationProperties(
+
     @NotBlank
     val specialization: String,
 

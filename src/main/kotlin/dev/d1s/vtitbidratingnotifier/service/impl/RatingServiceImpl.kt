@@ -69,18 +69,19 @@ class RatingServiceImpl : RatingService {
                                             it.getElementsByTag("p")
                                                 .first()!!
                                                 .getElementsByTag("span")
-                                                .first()
-                                                ?.text()
+                                                .joinToString(" ") { e ->
+                                                    e.text()
+                                                }
                                         }
 
-                                    if (columns.first() != null) {
+                                    if (columns.first() != "") {
                                         add(
                                             RatingEntry(
                                                 i + 1,
-                                                columns[0]!!,
-                                                columns[1]!!,
-                                                columns[2]!!,
-                                                columns[3]!!
+                                                columns[0],
+                                                columns[1],
+                                                columns[2],
+                                                columns[3]
                                             )
                                         )
                                     }
