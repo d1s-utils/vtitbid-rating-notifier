@@ -37,8 +37,8 @@ class NotificationServiceImpl : NotificationService {
                                 "${it.applicantName.wrap()} " +
                                 "${it.registrationNumber.wrap()} " +
                                 "${it.certificateType.wrap()} " +
-                                it.averageScore.wrap() + "\n```"
-                    }
+                                it.averageScore.wrap()
+                    } + "\n```"
                 )
             }.build()
         )
