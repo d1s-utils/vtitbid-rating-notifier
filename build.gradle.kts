@@ -17,14 +17,14 @@ repositories {
 }
 
 val jsoupVersion: String by project
-val discordWebhooksVersion: String by project
+val tgbotapiVersion: String by project
 val teabagsVersion: String by project
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.jsoup:jsoup:$jsoupVersion")
-    implementation("club.minnced:discord-webhooks:$discordWebhooksVersion")
+    implementation("dev.inmo:tgbotapi-jvm:$tgbotapiVersion")
     implementation("com.github.d1s-utils.teabags:teabag-stdlib:$teabagsVersion")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

@@ -1,6 +1,10 @@
 spring:
+  profiles:
+    active: prod
+
   application:
     name: "vtitbid-rating-notifier"
 
   main:
     banner-mode: off
+    allow-circular-references: true

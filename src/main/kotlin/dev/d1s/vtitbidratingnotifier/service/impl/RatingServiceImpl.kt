@@ -17,7 +17,7 @@ class RatingServiceImpl : RatingService {
     @set:Autowired
     lateinit var properties: VtitbidRatingNotifierConfigurationProperties
 
-    override fun requestAndParseRating(): Rating? {
+    override fun requestAndParseRating(): Rating {
         val document = Jsoup.connect(VTITBID_RATING_LOCATION).get()
         val elements = document.body().children()
 
@@ -28,7 +28,6 @@ class RatingServiceImpl : RatingService {
                 val costRecovery = properties.costRecovery
 
                 val specialization = spans.getOrNull(1)?.text()
-
 
                 if (spans.firstOrNull()?.text() == SPECIALIZATION_SPAN_VALUE
                     && specialization?.contains(properties.specialization) == true
@@ -47,9 +46,9 @@ class RatingServiceImpl : RatingService {
                                     3
                                 } else {
                                     2
-                                }
+                                }.checkProblematic(specialization)
                         ].getElementsByTag("span").let {
-                            "${it[0].text()} ${it[1].text()} "
+                            "${it[0].text()} ${it[1].text()} ${it[2].text()}"
                         },
                         buildSet {
                             elements[
@@ -57,7 +56,7 @@ class RatingServiceImpl : RatingService {
                                         5
                                     } else {
                                         4
-                                    }
+                                    }.checkProblematic(specialization)
                             ].getElementsByTag("tbody")
                                 .first()!!
                                 .getElementsByTag("tr")
@@ -92,6 +91,18 @@ class RatingServiceImpl : RatingService {
             }
         }
 
-        return null
+        throw IllegalStateException("Rating is not available.")
+    }
+
+    private fun Int.checkProblematic(specialization: String) =
+        if (specialization == PROBLEMATIC_SPECIALIZATION) {
+            this + 1
+        } else {
+            0
+        }
+
+    private companion object {
+
+        private const val PROBLEMATIC_SPECIALIZATION = "09.02.07 Информационные системы и программирование"
     }
 }
